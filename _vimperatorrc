@@ -1,0 +1,91 @@
+"3.0 (created: 2011/03/06 22:51:04)
+
+cnoremap <C-a> <C-v><C-a>
+cnoremap <C-z> <C-v><C-z>
+cnoremap <C-x> <C-v><C-x>
+cnoremap <C-v> <C-v><C-v>
+inoremap <C-a> <C-v><C-a>
+inoremap <C-z> <C-v><C-z>
+inoremap <C-x> <C-v><C-x>
+inoremap <C-v> <C-v><C-v>
+map <C-c> Copy selected text or stop loading
+map j 5<C-e>
+map k 5<C-y>
+map <BS> H
+map h <C-p>
+map l <C-n>
+noremap D <Nop>
+set complete=sl
+set focuscontent
+set history=1000
+set hlsearch
+set nextpattern=^次,^次(へ|の|ペ),^続き,bnextb,^>$,^(>>|&#187;)$,^(>|&#187;|&rsaquo;),(>|&#187;|&rsaquo;)$,bmoreb
+set previouspattern=^前,^前(へ|の|ペ),^戻る,bprev|previousb,^<$,^(<<|&#171;)$,^(<|&#171;|lsaquo;)$,^b<
+set titlestring=Firefox
+set visualbell
+style! -name=commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
+
+" undo list
+noremap U :undo<Space>
+" ex mode
+cmap <C-d> <Tab>
+cmap <C-n> <Tab>
+cmap <C-p> <S-Tab>
+" Jump from selection in visual mode http://memo.officebrook.net/20090803.html#p01
+vmap <silent> <C-g> y<Esc><Esc>P
+
+" ex mode でインクリメント補完
+"set wildoptions=auto
+
+" :[tab]open の補完対象と順番
+set complete=sl
+
+" リンクのURIをコマンドラインに表示
+set showstatuslinks=2
+
+" ページロード時にテキストボックスにフォーカスするのを防ぐ
+set focuscontent
+
+" Open in New Tab
+set newtab=help,addons,extoptions
+
+" Beep設定
+set visualbell
+hi Bell opacity: .3;
+
+" ページのアクセスキーを無効化
+set! ui.key.generalAccessKey=0
+
+" feedsomekeys_3.js
+command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
+lazy fmaps -u='mail\.google\.com/mail' c / j k n p o u e x s r a # [ ] ? gi gs gt gd ga gc
+lazy fmaps -u='mail\.google\.com/mail/.*/[0-9a-f]+$' c / j,n k,p n,j p,k o u e x s r a # [ ] ? gi gs gt gd ga gc
+lazy fmaps -u='www\.google\.co\.jp/reader' -events=vkeypress j k n p m s v A r S N P X O gh ga gs gt gu u / ? J K
+lazy fmaps -u='www\.google\.com/calendar/' -events=vkeydown t a w m x c e <Del> / + q s ? j k z <Esc> <BS>
+lazy fmaps -u='(fastladder|livedoor)\.com/reader' j k s a p o v c i,p <Space> <S-Space> z b < > q w e,g
+lazy fmaps -u='https?://www\.rememberthemilk\.com/home/' j k m i c t ? d F,f G,g S,s L,l Y,y H,h M,m <Del> <C-S-Left> <C-S-Right>
+lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/list' o j k
+lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/detail' u
+
+" Add Mapping `C-c' copy or stop loading
+javascript <<EOF
+mappings.addUserMap([modes.NORMAL,modes.VISUAL],['<C-c>'], 'Copy selected text or stop loading',
+  function(){
+    var sel = window.content.window.getSelection().toString();
+    if (sel){
+      copyToClipboard(sel,true);
+    } else {
+      BrowserStop();
+      echo('Stopped loading !');
+    }
+  }
+);
+EOF
+
+"IME control
+style -name commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
+
+"messge
+echo "vimperator: Welcome back."
+
+" vim: set ft=vim:
