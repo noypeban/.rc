@@ -1,10 +1,9 @@
-"vim: fenc=euc-jp
-"ÆüËÜ¸ìÂĞ±ş¥Õ¥¡¥¤¥ë
+"æ—¥æœ¬èªå¯¾å¿œãƒ•ã‚¡ã‚¤ãƒ«
 if filereadable(expand('~/.vimrc.encode'))
   source ~/.vimrc.encode
 endif
 
-"vim¸ß´¹¥â¡¼¥É¤òOFF
+"vimäº’æ›ãƒ¢ãƒ¼ãƒ‰ã‚’OFF
 set nocompatible
 
 "clipbord<=>yank/past
@@ -39,7 +38,7 @@ set expandtab
 "browse
 set browsedir=buffer
 
-"É½¼¨
+"è¡¨ç¤º
 set notitle
 set showcmd
 set showmode
@@ -50,13 +49,13 @@ highlight Search ctermfg=0
 set laststatus=2
 
 "options
-set nf="" "£±£°¿Ê¿ô¤Ë¸ÇÄê
+set nf="" "ï¼‘ï¼é€²æ•°ã«å›ºå®š
 
-"¥¹¥Æ¡¼¥¿¥¹¹ÔÉ½¼¨·Á¼°
+"ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡Œè¡¨ç¤ºå½¢å¼
 set statusline=%F%m%r%h%w%=%{(&fenc!=''?&fenc:&enc)}.%{&ff},%Y\ %l/%L(%p%%)
 "set statusline=%F%m%r%h%w\%=%{&ff},%Y\ %l/%L(%p%%)
 
-"ESC¥­¡¼Ï¢ÂÇ¤Ç¥Ï¥¤¥é¥¤¥È¤ò¾Ã¤¹
+"ESCã‚­ãƒ¼é€£æ‰“ã§ãƒã‚¤ãƒ©ã‚¤ãƒˆã‚’æ¶ˆã™
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 "add filetype of skill++ (*.ils)
