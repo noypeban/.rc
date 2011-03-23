@@ -2,30 +2,14 @@
 
 cnoremap <C-a> <C-v><C-a>
 cnoremap <C-z> <C-v><C-z>
+cnoremap <C-c> <C-v><C-c>
 cnoremap <C-x> <C-v><C-x>
 cnoremap <C-v> <C-v><C-v>
 inoremap <C-a> <C-v><C-a>
 inoremap <C-z> <C-v><C-z>
+inoremap <C-c> <C-v><C-c>
 inoremap <C-x> <C-v><C-x>
 inoremap <C-v> <C-v><C-v>
-
-"<C-c>で選択範囲のコピーと読み込みの中断
-"http://d.hatena.ne.jp/teramako/20071128/p2
-javascript <<EOF
-mappings.addUserMap([modes.NORMAL,modes.VISUAL],['<C-c>'], 'Copy selected text or stop loading',
-function(){
-		//var sel = window.content.window.getSelection().toString();
-		var sel = document.commandDispatcher.focusedWindow.getSelection().toString();
-		if (sel){
-				util.copyToClipboard(sel,true);
-				} else {
-				BrowserStop();
-				liberator.echo('Stopped loading !');
-				}
-				},{
-				rhs: 'Copy selected text or stop loading'
-				}
-				);
 
 map j 5<C-e>
 map k 5<C-y>
