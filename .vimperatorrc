@@ -68,7 +68,7 @@ set newtab=help,addons,extoptions
 style! -name=commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
 
 "mapping
-no @ :source ~/_vimperatorrc<CR>
+no @ :source ~/.vimperatorrc<CR>
 
 " ページのアクセスキーを無効化
 set! ui.key.generalAccessKey=0
