@@ -8,6 +8,25 @@ inoremap <C-a> <C-v><C-a>
 inoremap <C-z> <C-v><C-z>
 inoremap <C-x> <C-v><C-x>
 inoremap <C-v> <C-v><C-v>
+
+"<C-c>で選択範囲のコピーと読み込みの中断
+"http://d.hatena.ne.jp/teramako/20071128/p2
+javascript <<EOF
+mappings.addUserMap([modes.NORMAL,modes.VISUAL],['<C-c>'], 'Copy selected text or stop loading',
+function(){
+		//var sel = window.content.window.getSelection().toString();
+		var sel = document.commandDispatcher.focusedWindow.getSelection().toString();
+		if (sel){
+				util.copyToClipboard(sel,true);
+				} else {
+				BrowserStop();
+				liberator.echo('Stopped loading !');
+				}
+				},{
+				rhs: 'Copy selected text or stop loading'
+				}
+				);
+
 map j 5<C-e>
 map k 5<C-y>
 map <BS> H
@@ -17,15 +36,11 @@ noremap D <Nop>
 
 " :[tab]open の補完対象と順番
 set complete=bfhsS
-"Try to stay in Normal mode after loading a web page
-set focuscontent
+
 set history=1000
 set hlsearch
 set nextpattern=^次,^次(へ|の|ペ),^続き,bnextb,^>$,^(>>|&#187;)$,^(>|&#187;|&rsaquo;),(>|&#187;|&rsaquo;)$,bmoreb
 set previouspattern=^前,^前(へ|の|ペ),^戻る,bprev|previousb,^<$,^(<<|&#171;)$,^(<|&#171;|lsaquo;)$,^b<
-set titlestring=Firefox
-set visualbell
-style! -name=commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
 
 " guioptions
 set toolbars=nomenu,nonavigation,bookmarks,noaddons
@@ -68,10 +83,13 @@ lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/list' o j k
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/detail' u
 
 "IME control
-style -name commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
+style! -name=commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
 
 "Esc二回でハイライトを消す
 nnoremap  :set nohlsearch
+
+"Title
+set titlestring=Firefox
 
 "messge
 echo "vimperator: Welcome back."
