@@ -1,5 +1,8 @@
 "3.0 (created: 2011/03/06 22:51:04)
 
+"Title
+set titlestring=Firefox
+
 cnoremap <C-a> <C-v><C-a>
 cnoremap <C-z> <C-v><C-z>
 cnoremap <C-c> <C-v><C-c>
@@ -16,24 +19,39 @@ map k 5<C-y>
 map <BS> H
 map h <C-p>
 map l <C-n>
+map d <C-w> <C-p>
 noremap D <Nop>
+
+" ex mode
+cmap <C-d> <Tab>
+cmap <C-n> <Tab>
+cmap <C-p> <S-Tab>
+
+" guioptions
+set toolbars=nomenu,nonavigation,bookmarks,noaddons
 
 " :[tab]open の補完対象と順番
 set complete=bfhsS
 
 set history=1000
 set hlsearch
-set nextpattern=^次,^次(へ|の|ペ),^続き,bnextb,^>$,^(>>|&#187;)$,^(>|&#187;|&rsaquo;),(>|&#187;|&rsaquo;)$,bmoreb
-set previouspattern=^前,^前(へ|の|ペ),^戻る,bprev|previousb,^<$,^(<<|&#171;)$,^(<|&#171;|lsaquo;)$,^b<
 
-" guioptions
-set toolbars=nomenu,nonavigation,bookmarks,noaddons
+" Beep設定
+set visualbell
+hi Bell opacity: .3;
+
+"Esc二回でハイライトを消す
+nnoremap <Esc><Esc> :set nohlsearch<CR><Esc>
+
+"next/prev pattern
+"set nextpattern=^次(へ|の|ぺ),^続き,\bnext\b,^>$,^(>>|&#187;)$,^(>|&#187;|&rsaquo;),(>|&#187;|&rsaquo;)$,bmoreb
+"set nextpattern=\bnext\b,\bmore\b,next,^次(の)?ページ,\b次.*,→\b,^>$,^(>>|≫)$,^(>|≫),(>|≫)$
+set nextpattern=\bnext\b,\bmore\b,^next$,^次(の)?ページ,\b次.*,^次へ$,→\b,^>$,^(>>|≫)$,^(>|≫),(>|≫)$
+set previouspattern=^前,^前(へ|の|ペ),^戻る,\bprev|previous\b,^<$,^(<<|&#171;)$,^(<|&#171;|lsaquo;)$,^b<
+
 " undo list
 noremap U :undo<Space>
-" ex mode
-cmap <C-d> <Tab>
-cmap <C-n> <Tab>
-cmap <C-p> <S-Tab>
+
 " Jump from selection in visual mode http://memo.officebrook.net/20090803.html#p01
 vmap <silent> <C-g> y<Esc><Esc>P
 
@@ -46,9 +64,11 @@ set focuscontent
 " Open in New Tab
 set newtab=help,addons,extoptions
 
-" Beep設定
-set visualbell
-hi Bell opacity: .3;
+"IME control
+style! -name=commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
+
+"mapping
+no @ :source ~/_vimperatorrc<CR>
 
 " ページのアクセスキーを無効化
 set! ui.key.generalAccessKey=0
@@ -64,15 +84,6 @@ lazy fmaps -u='(fastladder|livedoor)\.com/reader' j k s a p o v c i,p <Space> <S
 lazy fmaps -u='https?://www\.rememberthemilk\.com/home/' j k m i c t ? d F,f G,g S,s L,l Y,y H,h M,m <Del> <C-S-Left> <C-S-Right>
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/list' o j k
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/detail' u
-
-"IME control
-style! -name=commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
-
-"Esc二回でハイライトを消す
-nnoremap <Esc><Esc> :set nohlsearch<CR><Esc>
-
-"Title
-set titlestring=Firefox
 
 "messge
 echo "vimperator: Welcome back."
