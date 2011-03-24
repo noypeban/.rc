@@ -88,9 +88,8 @@ lazy fmaps -u='(fastladder|livedoor)\.com/reader' j k s a p o v c i,p <Space> <S
 lazy fmaps -u='https?://www\.rememberthemilk\.com/home/' j k m i c t ? d F,f G,g S,s L,l Y,y H,h M,m <Del> <C-S-Left> <C-S-Right>
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/list' o j k
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/detail' u
-lazy fmaps -u='.*/dentaku.htm$' -events=vkeydown 1 2 3 4 5 6 7 8 9 0 + * - /
 
 "messge
-echo "vimperator: Welcome back."
+echo "vimperator: Welcome back. rc updated 2011.03.24"
 
 " vim: set ft=vim:
