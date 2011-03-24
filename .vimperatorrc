@@ -3,6 +3,7 @@
 "Title
 set titlestring=Firefox
 
+"copy/cut/past
 cnoremap <C-a> <C-v><C-a>
 cnoremap <C-z> <C-v><C-z>
 cnoremap <C-c> <C-v><C-c>
@@ -13,13 +14,18 @@ inoremap <C-z> <C-v><C-z>
 inoremap <C-c> <C-v><C-c>
 inoremap <C-x> <C-v><C-x>
 inoremap <C-v> <C-v><C-v>
+nnoremap <C-a> <C-v><C-a>
+nnoremap <C-z> <C-v><C-z>
+nnoremap <C-c> <C-v><C-c>
+nnoremap <C-x> <C-v><C-x>
+nnoremap <C-v> <C-v><C-v>
 
 map j 5<C-e>
 map k 5<C-y>
 map <BS> H
 map h <C-p>
 map l <C-n>
-map d <C-w> <C-p>
+map d <C-w>
 noremap D <Nop>
 
 " ex mode
