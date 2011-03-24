@@ -6,6 +6,9 @@ endif
 "vim互換モードをOFF
 set nocompatible
 
+"beep off
+set visualbell t_vb=
+
 "clipbord<=>yank/past
 set clipboard+=autoselect
 set clipboard+=unnamed
