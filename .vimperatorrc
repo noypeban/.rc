@@ -50,10 +50,8 @@ hi Bell opacity: .3;
 nnoremap <Esc><Esc> :set nohlsearch<CR><Esc>
 
 "next/prev pattern
-"set nextpattern=^次(へ|の|ぺ),^続き,\bnext\b,^>$,^(>>|&#187;)$,^(>|&#187;|&rsaquo;),(>|&#187;|&rsaquo;)$,bmoreb
-"set nextpattern=\bnext\b,\bmore\b,next,^次(の)?ページ,\b次.*,→\b,^>$,^(>>|≫)$,^(>|≫),(>|≫)$
-set nextpattern=\bnext\b,\bmore\b,^next$,^次(の)?ページ,\b次.*,^次へ$,→\b,^>$,^(>>|≫)$,^(>|≫),(>|≫)$
-set previouspattern=^前,^前(へ|の|ペ),^戻る,\bprev|previous\b,^<$,^(<<|&#171;)$,^(<|&#171;|lsaquo;)$,^b<
+set nextpattern="^次(へ|の|ぺ),^続き,\bnext,^>$,^(>>|&#187;)$,^(>|&#187;|&rsaquo;),(>|&#187;|&rsaquo;)$,\bmore\b,^next\ section"
+set previouspattern="^前,^前(へ|の|ペ),^戻る,\bprev|previous\b,^<$,^(<<|&#171;)$,^(<|&#171;|lsaquo;)$,^\b<,^Previous\ section"
 
 " undo list
 noremap U :undo<Space>
@@ -90,6 +88,7 @@ lazy fmaps -u='(fastladder|livedoor)\.com/reader' j k s a p o v c i,p <Space> <S
 lazy fmaps -u='https?://www\.rememberthemilk\.com/home/' j k m i c t ? d F,f G,g S,s L,l Y,y H,h M,m <Del> <C-S-Left> <C-S-Right>
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/list' o j k
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/detail' u
+lazy fmaps -u='.*/dentaku.htm$' -events=vkeydown 1 2 3 4 5 6 7 8 9 0 + * - /
 
 "messge
 echo "vimperator: Welcome back."
