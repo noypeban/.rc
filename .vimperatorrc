@@ -50,8 +50,8 @@ hi Bell opacity: .3;
 nnoremap <Esc><Esc> :set nohlsearch<CR><Esc>
 
 "next/prev pattern
-set nextpattern="^次(へ|の|ぺ),^続き,\bnext,^>$,^(>>|&#187;)$,^(>|&#187;|&rsaquo;),(>|&#187;|&rsaquo;)$,\bmore\b,^next\ section"
-set previouspattern="^前,^前(へ|の|ペ),^戻る,\bprev|previous\b,^<$,^(<<|&#171;)$,^(<|&#171;|lsaquo;)$,^\b<,^Previous\ section"
+set nextpattern="^\ *次(へ|の|ぺ),^続き,\bnext,^>$,^(>>|&#187;)$,^(>|&#187;|&rsaquo;),(>|&#187;|&rsaquo;)$,\bmore\b,^next\ section"
+set previouspattern="^\ *前(へ|の|ペ),^戻る,\bprev|previous\b,^<$,^(<<|&#171;)$,^(<|&#171;|lsaquo;)$,^\b<,^Previous\ section"
 
 " undo list
 noremap U :undo<Space>
