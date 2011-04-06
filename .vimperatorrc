@@ -50,8 +50,10 @@ hi Bell opacity: .3;
 nnoremap <Esc><Esc> :set nohlsearch<CR><Esc>
 
 "next/prev pattern
+"次&nbsp;&#8250;
+"&#8249;&nbsp;前
 set nextpattern="^\ *次(へ|の|ぺ),^続き,\bnext,^>$,^(>>|&#187;)$,^(>|&#187;|&rsaquo;),(>|&#187;|&rsaquo;)$,\bmore\b,^next\ section"
-set previouspattern="^\ *前(へ|の|ペ),^戻る,\bprev|previous\b,^<$,^(<<|&#171;)$,^(<|&#171;|lsaquo;)$,^\b<,^Previous\ section"
+set previouspattern="^\ *前(へ|の|ペ),前$,^戻る,\bprev|previous\b,^<$,^(<<|&#171;)$,^(<|&#171;|lsaquo;)$,^\b<,^Previous\ section"
 
 " undo list
 noremap U :undo<Space>
@@ -90,6 +92,6 @@ lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/list' o j k
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/detail' u
 
 "messge
-echo "vimperator: Welcome back. rc updated 2011.03.24"
+echo "vimperator: Welcome back. rc updated 2011.04.06"
 
 " vim: set ft=vim:
