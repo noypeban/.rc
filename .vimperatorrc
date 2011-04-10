@@ -26,7 +26,7 @@ map <BS> H
 map h <C-p>
 map l <C-n>
 map d <C-w>
-noremap D <Nop>
+map D <C-w><C-p>
 
 " ex mode
 cmap <C-d> <Tab>
@@ -92,6 +92,6 @@ lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/list' o j k
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/detail' u
 
 "messge
-echo "vimperator: Welcome back. rc updated 2011.04.06"
+echo "vimperator: Welcome back. rc updated 2011.04.10"
 
 " vim: set ft=vim:
