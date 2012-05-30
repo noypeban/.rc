@@ -65,7 +65,7 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 au BufRead,BufNewFile *.ils	set filetype=skill
 au BufRead,BufNewFile *.cdsinit	set filetype=skill
 au filetype skill set lisp
-au filetype skill set dictionary=/home/watanab2/.vim/dict/skill.dict
+au filetype skill set dictionary=$HOME/.vim/dict/skill.dict
 
 "add filetype of calibre (*.tvf)
 au BufRead,BufNewFile *.tvf	set filetype=tcl
