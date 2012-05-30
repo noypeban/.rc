@@ -14,8 +14,8 @@ set clipboard+=autoselect
 set clipboard+=unnamed
 
 "backup
-set backupdir=$HOME/vimbackup
-set directory=$HOME/vimbackup
+set backupdir=$HOME/.vim/.vimbackup
+set directory=$HOME/.vim/.vimbackup
 
 "search
 set hlsearch
