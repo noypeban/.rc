@@ -1,0 +1,6 @@
+shell "/bin/zsh"
+
+### エスケープキー
+escape ^z^z
+
+autodetach on
