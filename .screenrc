@@ -1,6 +1,30 @@
+# ログインシェル
 shell "/bin/zsh"
 
-### エスケープキー
+# エスケープはCtrl+z
 escape ^z^z
 
+# 回線が切れた場合に自動的にデタッチ
 autodetach on
+
+# 可視ベル
+vbell off
+
+# スプラッシュ不要
+startup_message off
+# スクロールバッファ
+defscrollback 10000
+
+shelltitle "% |zsh"
+hardstatus alwayslastline "%{= KW}%-w%{=b cW}%n %t%{-}%+w%=%Y/%m/%d %c"
+
+# マウスホイールの挙動
+termcapinfo xterm* ti@:te@
+
+# 編集後に画面をクリア
+altscreen on
+
+# zombie コマンド引数指定、screen中でプロセス死時、指定キーを押すまでウインドウ残。
+# 設定してないとプロセスエラーメッセージが残らず消えてしまう
+# ^[ = ESC
+zombie "^["
