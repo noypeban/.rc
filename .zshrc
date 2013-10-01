@@ -7,10 +7,23 @@ export LANG=ja_JP.EUC-JP
 export HISTFILE=$HOME/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=100000
-export EDITOR=emacs
+export EDITOR=vim
+bindkey -e
+
+#command line
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey "^O" edit-command-line
+
+#smart
+autoload smart-insert-unmeta
+autoload smart-insert-last-word
+zle -N insert-last-word smart-insert-last-word
+bindkey '^]' insert-last-word
 
 ## set prompt
-PROMPT="%U$USER@%m%%%u "
+#PROMPT="%U$USER@%m%%%u "
+PROMPT="> "
 RPROMPT="[%~]"
 
 # バックグラウンドジョブの状態変化を即時報告する
@@ -44,9 +57,13 @@ setopt auto_resume
 ## 補完候補を一覧表示
 setopt auto_list
 ## 直前と同じコマンドをヒストリに追加しない
-setopt hist_ignore_dups
+setopt hist_ignore_dups hist_save_nodups
+## 以下はヒストリに追加しない
+compdef -d ls
+compdef -d ll
+compdef -d \.\.
 ## cd 時に自動で push
-setopt auto_pushd
+#setopt auto_pushd
 ## 同じディレクトリを pushd しない
 setopt pushd_ignore_dups
 ## ファイル名で #, ~, ^ の 3 文字を正規表現として扱う
@@ -104,7 +121,7 @@ bindkey "^N" history-beginning-search-forward-end
 
 source ~/.alias
 
-#extract copy from http://d.hatena.ne.jp/itchyny/20130227/1361933011
+# extract; copy from http://d.hatena.ne.jp/itchyny/20130227/1361933011
 function extract() {
     case $1 in
     *.tar.gz|*.tgz) tar xzvf $1;;
@@ -121,4 +138,23 @@ function extract() {
     esac
 }
 alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
+# mycd; mod from http://d.hatena.ne.jp/hi_igu/20110623
+function chpwd(){
+histf=$HOME/.zsh_history
+ls
+echo "cd" $PWD >> $histf
+}
 
+case "${TERM}" in
+    screen*|ansi*)
+        preexec()
+        {
+            echo -ne "\ek${1%% 2%% *}\e\\"
+        }
+        precmd()
+        {
+            echo -ne "\ek$(basename $(pwd))\e\\"
+            #echo -ne "\ek$(basename $SHELL)\e\\"
+        }
+        ;;
+esac
