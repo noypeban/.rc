@@ -2,8 +2,8 @@
 #
 # LANG
 #
-#export LANG=ja_JP.UTF-8
-export LANG=ja_JP.EUC-JP
+export LANG=ja_JP.UTF-8
+#export LANG=ja_JP.EUC-JP
 export HISTFILE=$HOME/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=100000
@@ -140,9 +140,9 @@ function extract() {
 alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
 # mycd; mod from http://d.hatena.ne.jp/hi_igu/20110623
 function chpwd(){
-histf=$HOME/.zsh_history
+#histf=$HOME/.zsh_history
 ls
-echo "cd" $PWD >> $histf
+#echo "cd" $PWD >> $histf
 }
 
 case "${TERM}" in
@@ -158,3 +158,18 @@ case "${TERM}" in
         }
         ;;
 esac
+
+# zaw
+zstyle ':completion:*' menu select
+zstyle ':completion:cd:*' ignore-parents parent pwd
+zstyle ':completion:*:descriptions' format '%BCompleting%b %U%d%u'
+typeset -ga chpwd_functions
+
+autoload -U chpwd_recent_dirs cdr
+chpwd_functions+=chpwd_recent_dirs
+zstyle ":chpwd:*" recent-dirs-max 500
+zstyle ":chpwd:*" recent-dirs-default true
+zstyle ":completion:*" recent-dirs-insert always
+
+source /home/toshikazu/.zsh_plugins/zaw/zaw.zsh
+bindkey '^@' zaw-cdr
