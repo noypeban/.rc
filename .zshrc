@@ -3,25 +3,16 @@
 # LANG
 #
 export LANG=ja_JP.UTF-8
-#export LANG=ja_JP.EUC-JP
 export HISTFILE=$HOME/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=100000
 export EDITOR=vim
-#export CVSROOT=/home/ml1_2/.cvs
-export CVSROOT=/home/utools/.CVSROOT
 bindkey -e
 
 bindkey "^[u" undo
 bindkey "^[r" redo
 
 # 環境変数設定
-export PATH=/home/watanab2/tools/bin:$PATH
-export PRINTER=Funa_A4D
-
-#set 1st group id.
-#alias newgrp="exec newgrp"
-#newgrp utools
 
 #command line
 autoload -U edit-command-line
@@ -199,23 +190,12 @@ case "${TERM}" in
         ;;
 esac
 
-# check edit cells
-function ledit(){
-ledit_dir="/home/s1zr64g/TeamRoot/projects.Cata/s1zr64g.Fprj/.templib/DESIGNLIBS"
-echo "searching $ledit_dir..."
-ls -d $ledit_dir/*/*/schematic(/f750u:watanab2:) 2>/dev/null || echo "no edit schematic cells found."
-ls -d $ledit_dir/*/*/schematic/schematic.cdb.cdslck(u:watanab2:) 2>/dev/null || echo "no locked schematic views found."
-ls -d $ledit_dir/*/*/layout(/f750u:watanab2:) 2>/dev/null || echo "no edit layout cells found."
-ls -d $ledit_dir/*/*/layout/layout.cdb.cdslck(u:watanab2:) 2>/dev/null || echo "no locked layout views found."
-}
-
-
 # zmv
 autoload -Uz zmv
 alias zmv='noglob zmv -W'
 
 ## zaw
-source /home/watanab2/zsh/zaw-master/zaw.zsh
+source ~/.zsh_plugins/zaw/zaw.zsh
 zstyle ':completion:*' menu select
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
 zstyle ':completion:*:descriptions' format '%BCompleting%b %U%d%u'
