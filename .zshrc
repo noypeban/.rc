@@ -195,18 +195,13 @@ autoload -Uz zmv
 alias zmv='noglob zmv -W'
 
 ## zaw
-source ~/.zsh_plugins/zaw/zaw.zsh
-zstyle ':completion:*' menu select
-zstyle ':completion:*:cd:*' ignore-parents parent pwd
-zstyle ':completion:*:descriptions' format '%BCompleting%b %U%d%u'
-
-typeset -ga chpwd_functions
-
-autoload -U chpwd_recent_dirs cdr
-chpwd_functions+=chpwd_recent_dirs
-zstyle ":chpwd:*" recent-dirs-max 500
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ":chpwd:*" recent-dirs-max 5000
 zstyle ":chpwd:*" recent-dirs-default true
 zstyle ":completion:*" recent-dirs-insert always
 
+source ~/.zsh_plugins/zaw/zaw.zsh
+zstyle ':filter-select' case-insensitive yes # 絞り込みをcase-insensitiveに
 bindkey '^@' zaw-cdr # zaw-cdrをbindkey
 bindkey '^h' zaw-history

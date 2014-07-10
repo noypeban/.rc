@@ -1,35 +1,7 @@
-alias clisp='/home/ml1_2/bin/clisp'
-alias vim='/tools/OSS/bin/vim'
-alias gvim='/tools/OSS/bin/gvim -geometry 140x60-0+0'
-alias tkdiff='/tools/OSS/bin/tkdiff'
-alias tree='cd /home/ml1_2/tree'
-alias sk='cd /home/watanab2/skill'
-alias sk4='cd /home/sanlsi/Skill/Common'
-alias ml1='cd /home/ml1_2/skill'
-alias commonMenu='cd /home/ml1_2/commonMenu'
-#alias gtkc='gcc `pkg-config gtk+-2.0 --libs --cflags`'#gcc for gtk+
-alias lpr='lpr -P mf08n4'
-#alias memo='vim ~/changelog'
-alias memo='vim /www/www3/groups/3lsi/report13/ml1/watanabe/changelog'
-#product workareas
-alias bonito='cd /home/watanab2/workAreas.Cata/bonito_watanab2.Work/'
-alias 1y='cd /home/watanab2/workAreas.Cata/t64g1be2_watanab2.Work/'
-alias 1z='cd /home/watanab2/workAreas.Cata/s1zr128g_watanab2.Work/'
-alias arowana='cd /home/watanab2/workAreas.Cata/arowana_watanab2.Work/'
-#my tool
-alias capture='/home/watanab2/sh/capture_for_commonMenu.sh'
-alias syuho='cd /www/www3/groups/3lsi/report13/ml1/watanabe/'
-alias launcher='/tools/mcad/bin/launcher_startup.sh 2 > /dev/null &'
-alias cdnshelp='/tools/cadence/ic615/bin/cdnshelp -search='
-
 #from .cshrc.local default
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
-#alias pwd='echo $cwd'
-alias .='pwd'
-alias ..='set dot=$cwd;cd ..'
-alias m=more
 
 alias ls='ls --color=auto'
 alias la='ls -a'
@@ -49,11 +21,3 @@ alias lse='ls -d *(/^F)'               # only show empty directories
 alias lsnew="ls -rl *(D.om[1,10])"     # display the newest files
 alias lsold="ls -rtlh *(D.om[1,10])"   # display the oldest files
 alias lssmall="ls -Srl *(.oL[1,10])"   # display the smallest files
-alias rw-='chmod 600'
-alias rwx='chmod 700'
-alias r--='chmod 644'
-alias r-x='chmod 755'
-
-# chalow
-alias chalow='/home/watanab2/tools/lib/chalow-1.0/chalow -o ~/diary -8 -c ~/diary/cl.conf ~/diary/diary.txt'
-alias diary='chalow; firefox ~/diary/index.html'
