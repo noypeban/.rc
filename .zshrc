@@ -8,7 +8,20 @@ export HISTFILE=$HOME/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=100000
 export EDITOR=vim
+#export CVSROOT=/home/ml1_2/.cvs
+export CVSROOT=/home/utools/.CVSROOT
 bindkey -e
+
+bindkey "^[u" undo
+bindkey "^[r" redo
+
+# 環境変数設定
+export PATH=/home/watanab2/tools/bin:$PATH
+export PRINTER=Funa_A4D
+
+#set 1st group id.
+#alias newgrp="exec newgrp"
+#newgrp utools
 
 #command line
 autoload -U edit-command-line
@@ -58,14 +71,28 @@ setopt auto_resume
 setopt auto_list
 ## 直前と同じコマンドをヒストリに追加しない
 setopt hist_ignore_dups hist_save_nodups
+## 履歴に加えられる新しいコマンドが古いものと重複している場合、古いものを削除する。
+setopt hist_ignore_all_dups
 ## 以下はヒストリに追加しない
-compdef -d ls
-compdef -d ll
-compdef -d \.\.
+zshaddhistory() {
+    local line=${1%%$'\n'}
+    local cmd=${line%% *}
+
+    # 以下の条件をすべて満たすものだけをヒストリに追加する
+    [[  ${cmd} != (ls|la|ll|lsa|lad|lsd)
+        && ${cmd} != (cd)
+        && ${cmd} != (rm)
+        && ${cmd} != (m|man)
+        && ${cmd} != (exit)
+        && ${cmd} != (\.\.|\.\./.*)
+    ]]
+}
+##プロセス指定、ジョブ記法でメニュー選択を有効にする。
+zstyle ':completion:*:(processes|jobs)' menu yes select=2
 ## cd 時に自動で push
 #setopt auto_pushd
 ## 同じディレクトリを pushd しない
-setopt pushd_ignore_dups
+#setopt pushd_ignore_dups
 ## ファイル名で #, ~, ^ の 3 文字を正規表現として扱う
 setopt extended_glob
 ## TAB で順に補完候補を切り替える
@@ -87,7 +114,10 @@ setopt share_history
 ## 補完候補のカーソル選択を有効に
 zstyle ':completion:*:default' menu select=1
 ## 補完候補の色づけ
-zstyle ':completion:*:default' list-colors ''
+#zstyle ':completion:*:default' list-colors ''
+if [ -n "$LS_COLORS" ]; then
+    zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+fi 
 ## ディレクトリ名だけで cd
 setopt auto_cd
 ## カッコの対応などを自動的に補完
@@ -112,6 +142,8 @@ setopt hist_no_store
 setopt list_packed
 ## 最後のスラッシュを自動的に削除しない
 setopt noautoremoveslash
+## stop no match warning
+setopt nonomatch
 
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
@@ -145,24 +177,49 @@ ls
 #echo "cd" $PWD >> $histf
 }
 
+# ターミナルのタイトル
 case "${TERM}" in
+    kterm*|xterm)
+        precmd() {
+            echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
+        }
+        ;;
     screen*|ansi*)
         preexec()
         {
             echo -ne "\ek${1%% 2%% *}\e\\"
+            echo -ne "\033P\033]0;${USER}@${HOST%%.*}:${PWD}\007\033\\"
         }
         precmd()
         {
             echo -ne "\ek$(basename $(pwd))\e\\"
             #echo -ne "\ek$(basename $SHELL)\e\\"
+            echo -ne "\033P\033]0;${USER}@${HOST%%.*}:${PWD}\007\033\\"
         }
         ;;
 esac
 
-# zaw
+# check edit cells
+function ledit(){
+ledit_dir="/home/s1zr64g/TeamRoot/projects.Cata/s1zr64g.Fprj/.templib/DESIGNLIBS"
+echo "searching $ledit_dir..."
+ls -d $ledit_dir/*/*/schematic(/f750u:watanab2:) 2>/dev/null || echo "no edit schematic cells found."
+ls -d $ledit_dir/*/*/schematic/schematic.cdb.cdslck(u:watanab2:) 2>/dev/null || echo "no locked schematic views found."
+ls -d $ledit_dir/*/*/layout(/f750u:watanab2:) 2>/dev/null || echo "no edit layout cells found."
+ls -d $ledit_dir/*/*/layout/layout.cdb.cdslck(u:watanab2:) 2>/dev/null || echo "no locked layout views found."
+}
+
+
+# zmv
+autoload -Uz zmv
+alias zmv='noglob zmv -W'
+
+## zaw
+source /home/watanab2/zsh/zaw-master/zaw.zsh
 zstyle ':completion:*' menu select
-zstyle ':completion:cd:*' ignore-parents parent pwd
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
 zstyle ':completion:*:descriptions' format '%BCompleting%b %U%d%u'
+
 typeset -ga chpwd_functions
 
 autoload -U chpwd_recent_dirs cdr
@@ -171,5 +228,5 @@ zstyle ":chpwd:*" recent-dirs-max 500
 zstyle ":chpwd:*" recent-dirs-default true
 zstyle ":completion:*" recent-dirs-insert always
 
-source /home/toshikazu/.zsh_plugins/zaw/zaw.zsh
-bindkey '^@' zaw-cdr
+bindkey '^@' zaw-cdr # zaw-cdrをbindkey
+bindkey '^h' zaw-history
