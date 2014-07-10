@@ -1,5 +1,6 @@
 # ログインシェル
-shell "/bin/zsh"
+#shell "/bin/zsh"
+shell "/home/watanab2/tools/bin/zsh"
 
 # エスケープはCtrl+z
 escape ^z^z
@@ -15,11 +16,13 @@ startup_message off
 # スクロールバッファ
 defscrollback 10000
 
-shelltitle "% |zsh"
-hardstatus alwayslastline "%{= KW}%-w%{=b cW}%n %t%{-}%+w%=%Y/%m/%d %c"
+setenv SCREENTITLE auto
+"shelltitle "% |zsh"
+hardstatus alwayslastline "%{= kd}%-w%{=b KW}%n %t%{-}%+w%=%Y/%m/%d %c"
 
 # マウスホイールの挙動
 termcapinfo xterm* ti@:te@
+termcapinfo gnome-terminal ti@:te@
 
 # 編集後に画面をクリア
 altscreen on
@@ -27,4 +30,4 @@ altscreen on
 # zombie コマンド引数指定、screen中でプロセス死時、指定キーを押すまでウインドウ残。
 # 設定してないとプロセスエラーメッセージが残らず消えてしまう
 # ^[ = ESC
-zombie "^["
+#zombie "^["
